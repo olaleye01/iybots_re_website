@@ -66,22 +66,41 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // FAB visibility — show only after hero section scrolls out of view
+    // FAB visibility — show only between hero and CTA sections
     const fabStack = document.getElementById('fabStack');
     const heroSection = document.querySelector('.hero');
+    const ctaSection = document.querySelector('.cta-section');
+    let heroVisible = true;
+    let ctaVisible = false;
+
+    function updateFabVisibility() {
+        if (!heroVisible && !ctaVisible) {
+            fabStack.classList.add('fab-visible');
+        } else {
+            fabStack.classList.remove('fab-visible');
+        }
+    }
 
     if (fabStack && heroSection) {
         const heroObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    fabStack.classList.remove('fab-visible');
-                } else {
-                    fabStack.classList.add('fab-visible');
-                }
+                heroVisible = entry.isIntersecting;
+                updateFabVisibility();
             });
         }, { root: null, threshold: 0 });
 
         heroObserver.observe(heroSection);
+    }
+
+    if (fabStack && ctaSection) {
+        const ctaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                ctaVisible = entry.isIntersecting;
+                updateFabVisibility();
+            });
+        }, { root: null, threshold: 0 });
+
+        ctaObserver.observe(ctaSection);
     }
 
 });
