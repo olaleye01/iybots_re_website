@@ -578,6 +578,106 @@ p {
 /* =========================================
    Pricing 
    ========================================= */
+.slots-banner {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.slots-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--clr-accent);
+}
+
+.slots-banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.slots-text {
+    flex: 1;
+}
+
+.slots-text h3 {
+    color: var(--clr-white);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.slots-text p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.slots-indicator {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.slots-labels {
+    display: flex;
+    justify-content: space-between;
+    color: var(--clr-white);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.slots-labels span:last-child {
+    color: var(--clr-accent);
+}
+
+.slots-progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+}
+
+.slots-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--clr-primary-light), var(--clr-accent));
+    border-radius: var(--radius-pill);
+    box-shadow: 0 0 10px rgba(226, 236, 151, 0.5);
+    position: relative;
+    animation: slot-pulse 2s infinite ease-in-out;
+}
+
+@keyframes slot-pulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(226, 236, 151, 0.8);
+    }
+}
+
+@media (max-width: 768px) {
+    .slots-banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .slots-indicator {
+        width: 100%;
+    }
+}
+
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -623,6 +723,9 @@ p {
     border-radius: var(--radius-pill);
     font-weight: 600;
     font-size: 0.875rem;
+    text-align: center;
+    width: max-content;
+    max-width: 90%;
 }
 
 .pricing-price {

@@ -103,4 +103,61 @@ document.addEventListener('DOMContentLoaded', () => {
         ctaObserver.observe(ctaSection);
     }
 
+    // Dynamic Currency Conversion (USD to NGN based on IP)
+    const USD_TO_NGN_RATE = 1400;
+
+    // Helper to format large numbers to K/M shorthand (e.g., 420,000 -> 420k, 1,400,000 -> 1.4M)
+    function formatNaira(num) {
+        if (num >= 1000000) {
+            return (num / 1000000).toFixed(num % 1000000 === 0 ? 0 : 1) + 'M';
+        }
+        if (num >= 1000) {
+            return (num / 1000).toFixed(num % 1000 === 0 ? 0 : 1) + 'k';
+        }
+        return num.toLocaleString();
+    }
+
+    async function applyLocalCurrency() {
+        try {
+            // Fetch user location via free ipapi (fallback to USD on failure or rate-limit)
+            const response = await fetch('https://ipapi.co/json/');
+            if (!response.ok) return; // Keep USD
+
+            const data = await response.json();
+
+            // If user is in Nigeria, convert prices
+            if (data.country_code === 'NG') {
+                const currencySymbols = document.querySelectorAll('[data-currency-symbol]');
+                const basePrices = document.querySelectorAll('[data-base-price]');
+                const baseSetups = document.querySelectorAll('[data-base-setup]');
+
+                // Update symbols
+                currencySymbols.forEach(el => {
+                    el.textContent = '₦';
+                });
+
+                // Update monthly amounts
+                basePrices.forEach(el => {
+                    const usdVal = parseInt(el.getAttribute('data-base-price'), 10);
+                    if (!isNaN(usdVal)) {
+                        el.textContent = formatNaira(usdVal * USD_TO_NGN_RATE);
+                    }
+                });
+
+                // Update setup amounts
+                baseSetups.forEach(el => {
+                    const usdVal = parseInt(el.getAttribute('data-base-setup'), 10);
+                    if (!isNaN(usdVal)) {
+                        el.textContent = formatNaira(usdVal * USD_TO_NGN_RATE);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching location for currency conversion:', error);
+            // On network error or ad-blocker blocking IP API, degrade gracefully to USD default.
+        }
+    }
+
+    applyLocalCurrency();
+
 });

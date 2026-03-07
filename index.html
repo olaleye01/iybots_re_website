@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iybots Real Estate Portal & CRM System</title>
     <meta name="description"
-        content="Give your clients transparency and your team structured deal pipelines with the Iybots real estate operations system.">
+        content="Give your clients transparency and your team structured deal pipelines with the Iybots real estate operations system — built for agencies worldwide.">
 
     <!-- Favicon -->
     <link rel="icon" href="assets/iybots%20black%20favicon%20(1).svg" type="image/svg+xml"
@@ -32,7 +32,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">
+            <a href="#hero" class="logo">
                 <img src="assets/IYBOTS LOGO (1).svg" alt="Iybots Technologies" class="brand-logo">
             </a>
             <div class="nav-links">
@@ -51,7 +51,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero">
+    <header class="hero" id="hero">
         <div class="container hero-container">
             <div class="hero-content">
                 <div class="badge"><span class="pulse-dot"></span>Real Estate Operations System</div>
@@ -146,7 +146,7 @@
         <div class="container">
             <div class="section-header text-center">
                 <h2>Everything You Need to Scale</h2>
-                <p>Built exclusively for Nigerian real estate agencies.</p>
+                <p>Built for real estate agencies worldwide.</p>
             </div>
 
             <div class="feature-split">
@@ -216,6 +216,25 @@
                 <p>Choose the system that fits your operational needs. Founding Partner slots include customization.</p>
             </div>
 
+            <!-- Founding Partner Slots Banner -->
+            <div class="slots-banner glass-panel dark">
+                <div class="slots-banner-content">
+                    <div class="slots-text">
+                        <h3>Founding Partner Program</h3>
+                        <p>Early-adopter pricing. Rates will triple after initial 5 slots are filled.</p>
+                    </div>
+                    <div class="slots-indicator">
+                        <div class="slots-labels">
+                            <span>Slots Claimed</span>
+                            <span>4 / 5</span>
+                        </div>
+                        <div class="slots-progress-bar">
+                            <div class="slots-progress-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="pricing-grid">
                 <!-- Elite Package -->
                 <div class="pricing-card">
@@ -224,8 +243,10 @@
                         <p>Best for agencies needing structured deal management and client transparency.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency">₦</span>400k<span class="period">/mo</span>
-                        <div class="setup-fee">+ ₦1.5M setup (3 months minimum)</div>
+                        <span class="currency" data-currency-symbol>$</span><span class="amount"
+                            data-base-price="300">300</span><span class="period">/mo</span>
+                        <div class="setup-fee">+ <span class="setup-currency" data-currency-symbol>$</span><span
+                                class="setup-amount" data-base-setup="1000">1,000</span> setup (3 months minimum)</div>
                     </div>
                     <ul class="pricing-features">
                         <li><i class="ph-bold ph-check"></i> Web System Implementation</li>
@@ -245,8 +266,10 @@
                         <p>Everything in Elite plus on-site management and verified supervision.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency">₦</span>750k<span class="period">/mo</span>
-                        <div class="setup-fee">+ ₦3M setup (3 months minimum)</div>
+                        <span class="currency" data-currency-symbol>$</span><span class="amount"
+                            data-base-price="535">535</span><span class="period">/mo</span>
+                        <div class="setup-fee">+ <span class="setup-currency" data-currency-symbol>$</span><span
+                                class="setup-amount" data-base-setup="2150">2,150</span> setup (3 months minimum)</div>
                     </div>
                     <ul class="pricing-features">
                         <li><i class="ph-bold ph-check"></i> <strong>Everything in Elite</strong></li>
@@ -270,19 +293,19 @@
                     <p>We are not just software; we are your real estate operational partner.</p>
                     <ul class="why-list">
                         <li>
-                            <div class="why-icon"><i class="ph ph-flag-banner"></i></div>
+                            <div class="why-icon"><i class="ph ph-globe-hemisphere-west"></i></div>
                             <div class="why-text">
-                                <h4>Designed for Nigeria</h4>
-                                <p>Built specifically to handle the nuances of the Nigerian real estate market
-                                    operations.</p>
+                                <h4>Built for Global Markets</h4>
+                                <p>Adaptable to local regulations, currencies, and workflows — designed to handle
+                                    the nuances of real estate markets across the globe.</p>
                             </div>
                         </li>
                         <li>
                             <div class="why-icon"><i class="ph ph-lock-key"></i></div>
                             <div class="why-text">
                                 <h4>Data Control & Security</h4>
-                                <p>Your data remains under your absolute control, designed with NDPR privacy principles.
-                                </p>
+                                <p>Your data remains under your absolute control, designed with GDPR, NDPR, and
+                                    international data-privacy standards.</p>
                             </div>
                         </li>
                         <li>
@@ -303,7 +326,7 @@
                     <div class="author">
                         <div class="author-info">
                             <strong>Managing Director</strong>
-                            <span>Ikoyi-based Real Estate Developer</span>
+                            <span>Aura Homes & Properties</span>
                         </div>
                     </div>
                 </div>
@@ -322,7 +345,7 @@
                     <button class="faq-question">How long does implementation take? <i
                             class="ph ph-caret-down"></i></button>
                     <div class="faq-answer">
-                        <p>Our standard implementation takes between 2 to 4 weeks, depending on the complexity of your
+                        <p>Our standard implementation takes between 1 to 2 weeks, depending on the complexity of your
                             current workflows and team size. This includes system configuration and data migration.</p>
                     </div>
                 </div>
@@ -343,8 +366,8 @@
                 <div class="faq-item">
                     <button class="faq-question">Who is this system best for? <i class="ph ph-caret-down"></i></button>
                     <div class="faq-answer">
-                        <p>The system is specifically designed for Nigerian real estate agencies and developers with
-                            team sizes of 10 to 100+ staff members managing high-value deals and construction projects.
+                        <p>The system is designed for real estate agencies and developers globally, with team
+                            sizes of 10 to 100+ staff members managing high-value deals and construction projects.
                         </p>
                     </div>
                 </div>
@@ -387,7 +410,7 @@
                     <a href="#" class="logo">
                         <img src="assets/IYBOTS%20LOGO%20W.svg" alt="Iybots Technologies" class="brand-logo">
                     </a>
-                    <p>Real estate operations structured for the Nigerian market. Fast closings, total transparency.</p>
+                    <p>Real estate operations structured for teams worldwide. Fast closings, total transparency.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Product</h4>
@@ -413,7 +436,7 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Iybots Technologies. All rights reserved.</p>
                 <div class="footer-legal">
-                    <a href="#">Privacy Policy (NDPR)</a>
+                    <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
                 </div>
             </div>
