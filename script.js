@@ -66,15 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // FAB visibility — show only between hero and CTA sections
+    // FAB visibility — show only between hero and pricing sections
     const fabStack = document.getElementById('fabStack');
     const heroSection = document.querySelector('.hero');
-    const ctaSection = document.querySelector('.cta-section');
+    const pricingSection = document.querySelector('#pricing');
     let heroVisible = true;
-    let ctaVisible = false;
+    let pricingVisible = false;
 
     function updateFabVisibility() {
-        if (!heroVisible && !ctaVisible) {
+        if (!heroVisible && !pricingVisible) {
             fabStack.classList.add('fab-visible');
         } else {
             fabStack.classList.remove('fab-visible');
@@ -92,15 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
         heroObserver.observe(heroSection);
     }
 
-    if (fabStack && ctaSection) {
-        const ctaObserver = new IntersectionObserver((entries) => {
+    if (fabStack && pricingSection) {
+        const pricingObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                ctaVisible = entry.isIntersecting;
+                pricingVisible = entry.isIntersecting;
                 updateFabVisibility();
             });
         }, { root: null, threshold: 0 });
 
-        ctaObserver.observe(ctaSection);
+        pricingObserver.observe(pricingSection);
     }
 
     // Dynamic Currency Conversion (USD to NGN based on IP)
