@@ -250,14 +250,52 @@ p {
 
 /* Badges */
 .badge {
-    display: inline-block;
-    padding: 0.35rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.1rem;
     border-radius: var(--radius-pill);
     font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 1rem;
-    background-color: var(--clr-gray-200);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     color: var(--clr-primary);
+}
+
+/* Pulsing green dot for hero badge */
+.pulse-dot {
+    position: relative;
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #22c55e;
+    flex-shrink: 0;
+}
+
+.pulse-dot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: #22c55e;
+    animation: pulse-ring 1.8s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(2.8);
+        opacity: 0;
+    }
 }
 
 .badge-gold {
@@ -851,24 +889,60 @@ blockquote {
 }
 
 /* =========================================
-   Sticky Mobile CTA
+   Sticky FAB Stack
    ========================================= */
-.sticky-mobile-cta {
+.fab-stack {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 1rem;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-    display: none;
-    gap: 1rem;
+    bottom: 1.75rem;
+    right: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
     z-index: 1000;
+    align-items: flex-end;
+    /* Hidden until hero scrolls out */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.sticky-mobile-cta .btn {
-    flex: 1;
+.fab-stack.fab-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fab i {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.fab:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+}
+
+.fab-whatsapp {
+    background-color: #25D366;
+    color: #fff;
+}
+
+.fab-demo {
+    background-color: var(--clr-primary);
+    color: #fff;
 }
 
 /* =========================================
@@ -927,7 +1001,7 @@ blockquote {
         width: 100%;
         background: rgba(244, 247, 245, 0.95);
         padding: 2rem;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     }
 
     .mobile-menu-btn {
@@ -936,6 +1010,16 @@ blockquote {
 
     .hero {
         padding: 120px 0 60px;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
     }
 
     .process-steps {
@@ -960,15 +1044,7 @@ blockquote {
         flex-direction: column;
     }
 
-    .sticky-mobile-cta {
-        display: flex;
-    }
-
-    body {
-        padding-bottom: 80px;
-    }
-
-    /* Space for sticky bar */
+    /* FAB always visible; no body padding needed */
 }
 
 @media (max-width: 576px) {
