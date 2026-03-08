@@ -70,37 +70,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const fabStack = document.getElementById('fabStack');
     const heroSection = document.querySelector('.hero');
     const pricingSection = document.querySelector('#pricing');
-    let heroVisible = true;
-    let pricingVisible = false;
 
-    function updateFabVisibility() {
-        if (!heroVisible && !pricingVisible) {
-            fabStack.classList.add('fab-visible');
-        } else {
-            fabStack.classList.remove('fab-visible');
-        }
-    }
+    if (fabStack && heroSection && pricingSection) {
+        const toggleFabVisibility = () => {
+            const heroRect = heroSection.getBoundingClientRect();
+            const pricingRect = pricingSection.getBoundingClientRect();
 
-    if (fabStack && heroSection) {
-        const heroObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                heroVisible = entry.isIntersecting;
-                updateFabVisibility();
-            });
-        }, { root: null, threshold: 0 });
+            // Hero is scrolled out of view (top of screen has passed it)
+            const passedHero = heroRect.bottom < 100;
+            // Pricing has not yet scrolled into the viewport
+            const beforePricing = pricingRect.top > window.innerHeight - 100;
 
-        heroObserver.observe(heroSection);
-    }
+            if (passedHero && beforePricing) {
+                fabStack.classList.add('fab-visible');
+            } else {
+                fabStack.classList.remove('fab-visible');
+            }
+        };
 
-    if (fabStack && pricingSection) {
-        const pricingObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                pricingVisible = entry.isIntersecting;
-                updateFabVisibility();
-            });
-        }, { root: null, threshold: 0 });
-
-        pricingObserver.observe(pricingSection);
+        window.addEventListener('scroll', toggleFabVisibility, { passive: true });
+        // Check once on load
+        toggleFabVisibility();
     }
 
     // Dynamic Currency Conversion (USD to NGN based on IP)
