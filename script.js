@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const demoVideoFrame = document.getElementById('demoVideoFrame');
 
     // Actual YouTube embed URL from User (enablejsapi=1 allows postMessage pause/play)
-    const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/NyQZqOrz354?autoplay=1&enablejsapi=1';
+    const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/FocsbiV4d2o?autoplay=1&enablejsapi=1';
     // Webhook URL
     const WEBHOOK_URL = 'https://oracle.iybots.com/webhook/03337660-5a6b-4555-a3af-0334667ffca4';
 
