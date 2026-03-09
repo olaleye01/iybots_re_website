@@ -119,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.country_code === 'NG') {
                 const currencySymbols = document.querySelectorAll('[data-currency-symbol]');
                 const basePrices = document.querySelectorAll('[data-base-price]');
-                const baseSetups = document.querySelectorAll('[data-base-setup]');
 
                 // Update symbols
                 currencySymbols.forEach(el => {
@@ -133,14 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         el.textContent = formatNaira(usdVal * USD_TO_NGN_RATE);
                     }
                 });
-
-                // Update setup amounts
-                baseSetups.forEach(el => {
-                    const usdVal = parseInt(el.getAttribute('data-base-setup'), 10);
-                    if (!isNaN(usdVal)) {
-                        el.textContent = formatNaira(usdVal * USD_TO_NGN_RATE);
-                    }
-                });
             }
         } catch (error) {
             console.error('Error fetching location for currency conversion:', error);
@@ -149,5 +140,105 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     applyLocalCurrency();
+
+    // Demo Modal Logic
+    const demoModal = document.getElementById('demoModal');
+    const openDemoModalBtns = document.querySelectorAll('.open-demo-modal');
+    const closeDemoModalBtn = document.getElementById('closeDemoModalBtn');
+    const demoForm = document.getElementById('demoForm');
+    const demoFormContainer = document.getElementById('demoFormContainer');
+    const demoVideoContainer = document.getElementById('demoVideoContainer');
+    const modalContent = document.querySelector('.modal-content');
+    const demoVideoFrame = document.getElementById('demoVideoFrame');
+
+    // Actual YouTube embed URL from User (enablejsapi=1 allows postMessage pause/play)
+    const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/NyQZqOrz354?autoplay=1&enablejsapi=1';
+    // Webhook URL
+    const WEBHOOK_URL = 'https://oracle.iybots.com/webhook/03337660-5a6b-4555-a3af-0334667ffca4';
+
+    if (openDemoModalBtns.length > 0 && demoModal) {
+        openDemoModalBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                demoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+    }
+
+    const closeModal = () => {
+        demoModal.classList.remove('active');
+        document.body.style.overflow = '';
+        if (demoVideoContainer.classList.contains('active') && demoVideoFrame.contentWindow) {
+            // Pause the video using YouTube iframe API postMessage
+            demoVideoFrame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        }
+    };
+
+    if (closeDemoModalBtn) {
+        closeDemoModalBtn.addEventListener('click', closeModal);
+    }
+
+    if (demoModal) {
+        demoModal.addEventListener('click', (e) => {
+            if (e.target === demoModal) {
+                closeModal();
+            }
+        });
+    }
+
+    if (demoForm) {
+        demoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = demoForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+
+            // Show loading state
+            submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Processing...';
+            submitBtn.disabled = true;
+
+            // Gather Data
+            const formData = {
+                name: document.getElementById('demoName').value,
+                email: document.getElementById('demoEmail').value,
+                phone: document.getElementById('demoPhone').value,
+                company: document.getElementById('demoCompany').value,
+                source: "Website Demo Form"
+            };
+
+            try {
+                // Prepare Basic Auth token (iyb:Testtest123)
+                const basicAuth = btoa('iyb:Testtest123');
+
+                // Send to Webhook
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${basicAuth}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Show Video regardless of webhook absolute success
+                demoFormContainer.classList.remove('active');
+                demoVideoContainer.classList.add('active');
+                modalContent.classList.add('video-mode');
+
+                demoVideoFrame.src = YOUTUBE_EMBED_URL;
+
+                // Reset form optionally
+                demoForm.reset();
+            } catch (error) {
+                console.error("Error submitting form", error);
+                alert("Something went wrong. Please try again.");
+            } finally {
+                // Restore button
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
 
 });

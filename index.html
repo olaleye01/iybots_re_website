@@ -44,7 +44,7 @@
             <div class="nav-actions">
                 <a href="https://wa.me/2349127186500?text=Hello%20I%20want%20to%20enquire%20about%20Iybots%20Real%20Estate%20System"
                     target="_blank" class="btn btn-outline"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a>
-                <a href="#pricing" class="btn btn-primary">Book Demo</a>
+                <a href="#pricing" class="btn btn-primary">Get Started Now</a>
             </div>
             <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
         </div>
@@ -60,8 +60,8 @@
                 <p>Iybots gives your team a structured deal pipeline and your clients a secure portal to track progress.
                     Close deals faster and reduce update calls.</p>
                 <div class="hero-cta">
-                    <a href="#pricing" class="btn btn-primary btn-large">Book a
-                        Demo</a>
+                    <button class="btn btn-primary btn-large open-demo-modal"><i class="ph ph-play-circle"></i> Watch
+                        Demo</button>
                     <a href="https://wa.me/2349127186500?text=Hello%20I%20want%20to%20enquire%20about%20Iybots%20Real%20Estate%20System"
                         target="_blank" class="btn btn-secondary btn-large"><i class="ph ph-whatsapp-logo"></i> Chat on
                         WhatsApp</a>
@@ -245,9 +245,7 @@
                     </div>
                     <div class="pricing-price">
                         <span class="currency" data-currency-symbol>$</span><span class="amount"
-                            data-base-price="300">300</span><span class="period">/mo</span>
-                        <div class="setup-fee">+ <span class="setup-currency" data-currency-symbol>$</span><span
-                                class="setup-amount" data-base-setup="1000">1,000</span> setup</div>
+                            data-base-price="3750">3,750</span>
                     </div>
                     <ul class="pricing-features">
                         <li><i class="ph-bold ph-check"></i> Web System Implementation</li>
@@ -256,22 +254,19 @@
                         <li><i class="ph-bold ph-check"></i> Centralized Records DB</li>
                         <li><i class="ph-bold ph-check"></i> Automated Training</li>
                     </ul>
-                    <a href="https://cal.com/iybots/elite" target="_blank" class="btn btn-outline btn-full">Book Demo to
-                        Start</a>
+                    <a href="https://cal.com/iybots/elite" target="_blank" class="btn btn-outline btn-full">Get Started
+                        Now</a>
                 </div>
 
-                <!-- Executive Package -->
+                <!-- Enterprise Package -->
                 <div class="pricing-card premium">
                     <div class="popular-badge">Most Popular for Developers</div>
                     <div class="pricing-header">
-                        <h3>Executive</h3>
+                        <h3>Enterprise</h3>
                         <p>Everything in Elite plus on-site management and verified supervision.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency" data-currency-symbol>$</span><span class="amount"
-                            data-base-price="535">535</span><span class="period">/mo</span>
-                        <div class="setup-fee">+ <span class="setup-currency" data-currency-symbol>$</span><span
-                                class="setup-amount" data-base-setup="2150">2,150</span> setup</div>
+                        <span class="amount" style="font-size: 2.5rem; letter-spacing: -0.02em;">Custom</span>
                     </div>
                     <ul class="pricing-features">
                         <li><i class="ph-bold ph-check"></i> <strong>Everything in Elite</strong></li>
@@ -280,19 +275,12 @@
                         <li><i class="ph-bold ph-check"></i> AI Automation System</li>
                         <li><i class="ph-bold ph-check"></i> Priority VIP Support</li>
                     </ul>
-                    <a href="https://cal.com/iybots/executive" target="_blank" class="btn btn-primary btn-full">Book
-                        Demo to Start</a>
+                    <a href="https://cal.com/iybots/executive" target="_blank" class="btn btn-primary btn-full">Contact
+                        Us</a>
                 </div>
             </div>
 
-            <!-- Loom Video Notification -->
-            <div class="pricing-notice text-center" style="margin-top: 3rem;">
-                <div class="badge"
-                    style="font-size: 1rem; padding: 0.75rem 1.5rem; background: rgba(31, 63, 52, 0.05); border-color: rgba(31, 63, 52, 0.1);">
-                    <i class="ph ph-video-camera" style="font-size: 1.25rem; color: var(--clr-primary);"></i>
-                    We'll send a quick 3-minute Loom preview of your custom setup before our scheduled live demo.
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -400,8 +388,9 @@
                             operations.</p>
                     </div>
                     <div class="cta-action-panel">
-                        <div class="cta-action-label"><i class="ph ph-calendar-check"></i> Schedule Your Demo</div>
-                        <a href="#pricing" class="btn btn-primary btn-large cta-book-btn">Book a Demo</a>
+                        <div class="cta-action-label"><i class="ph ph-play-circle"></i> Schedule Your Demo</div>
+                        <button class="btn btn-primary btn-large cta-book-btn open-demo-modal"><i
+                                class="ph ph-play-circle"></i> Watch Demo</button>
                         <div class="cta-divider"></div>
                         <a href="https://wa.me/2349127186500?text=Hello%20I%20want%20to%20enquire%20about%20Iybots%20Real%20Estate%20System"
                             target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-cta btn-large"><i
@@ -460,9 +449,66 @@
             target="_blank" class="fab fab-whatsapp" aria-label="Chat on WhatsApp">
             <i class="ph ph-whatsapp-logo"></i>
         </a>
-        <a href="#pricing" class="fab fab-demo" aria-label="Book a Demo">
-            <i class="ph ph-calendar-check"></i>
-        </a>
+        <button class="fab fab-demo open-demo-modal" aria-label="Watch Demo">
+            <i class="ph ph-play-circle"></i>
+        </button>
+    </div>
+
+    <!-- Demo Modal -->
+    <div class="modal-overlay" id="demoModal">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="closeDemoModalBtn" aria-label="Close Demo Modal"><i
+                    class="ph ph-x"></i></button>
+
+            <div id="demoFormContainer" class="modal-step active">
+                <div class="text-center" style="margin-bottom: 2rem;">
+                    <div class="badge"><i class="ph ph-play-circle"></i> Watch Demo</div>
+                    <h2>See Iybots in Action</h2>
+                    <p style="margin-bottom: 0;">Please enter your details to access the demo video.</p>
+                </div>
+                <form id="demoForm" class="demo-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="demoName">Full Name</label>
+                            <input type="text" id="demoName" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="demoEmail">Email Address</label>
+                            <input type="email" id="demoEmail" required placeholder="john@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="demoPhone">Phone Number</label>
+                            <input type="tel" id="demoPhone" required placeholder="+1 234 567 8900">
+                        </div>
+                        <div class="form-group">
+                            <label for="demoCompany">Company Name</label>
+                            <input type="text" id="demoCompany" required placeholder="Real Estate Co.">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" style="margin-bottom: 1rem;"><i
+                            class="ph ph-play"></i> Watch Video Now</button>
+
+                    <div
+                        style="font-size: 0.875rem; padding: 0.5rem 0; width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0;">
+                        <i class="ph ph-video-camera" style="font-size: 1.125rem; color: var(--clr-primary);"></i>
+                        <span style="color: var(--clr-dark); font-weight: 500;">The demo video is less than 3 minutes
+                            long.</span>
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="demoVideoContainer" class="modal-step">
+                <div class="text-center" style="margin-bottom: 1.5rem;">
+                    <h2>Iybots Platform Demo</h2>
+                </div>
+                <div class="video-wrapper">
+                    <iframe id="demoVideoFrame" src="" title="Iybots Demo Video" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->

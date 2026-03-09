@@ -1240,3 +1240,150 @@ blockquote {
         text-align: center;
     }
 }
+
+/* =========================================
+   Modal Form & Video
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(18, 26, 22, 0.85);
+    /* var(--clr-dark) with opacity */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--clr-white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    transform: translateY(20px);
+    transition: var(--transition);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content.video-mode {
+    max-width: 900px;
+    padding: 2rem;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--clr-gray-600);
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.modal-close:hover {
+    color: var(--clr-primary);
+    transform: scale(1.1);
+}
+
+.modal-step {
+    display: none;
+}
+
+.modal-step.active {
+    display: block;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.demo-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2rem;
+    align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+    .demo-form .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+.demo-form .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.demo-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--clr-dark);
+}
+
+.demo-form input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--clr-gray-200);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.demo-form input:focus {
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 0 3px rgba(31, 63, 52, 0.1);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: #000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
