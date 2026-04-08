@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Actual YouTube embed URL from User (enablejsapi=1 allows postMessage pause/play)
     const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/FocsbiV4d2o?autoplay=1&enablejsapi=1';
-    const SUBMIT_URL = '/api/submit';
+    const WEBHOOK_URL = 'https://oracle.iybots.com/webhook/03337660-5a6b-4555-a3af-0334667ffca4';
 
     if (openDemoModalBtns.length > 0 && demoModal) {
         openDemoModalBtns.forEach(btn => {
@@ -207,10 +207,13 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                // Send to backend proxy
-                await fetch(SUBMIT_URL, {
+                const basicAuth = btoa('iyb:Testtest123');
+                await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${basicAuth}`
+                    },
                     body: JSON.stringify(formData)
                 });
 
